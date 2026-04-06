@@ -1,5 +1,5 @@
 import { Elysia } from 'elysia'
-import { userRouter } from './user'
+import { userRouter } from './controller/user'
 
 export const v1Router = new Elysia({
                             prefix: '/v1'

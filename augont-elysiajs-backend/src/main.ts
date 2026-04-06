@@ -1,5 +1,5 @@
 import { Elysia } from 'elysia'
-import { TotalRouter } from './internal/interface/router'
+import { TotalRouter } from './interface/router'
 
 const app = new Elysia()
                 .use(TotalRouter)
