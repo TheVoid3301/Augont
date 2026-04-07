@@ -3,13 +3,25 @@
   "version": "1.0.50",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "bun run --watch src/main.ts"
+    "dev": "bun run --watch src/main.ts",
+    "prisma:generate": "prisma generate --config prisma.config.ts",
+    "prisma:migrate:dev": "prisma migrate dev --config prisma.config.ts",
+    "prisma:studio": "prisma studio --config prisma.config.ts"
   },
   "dependencies": {
-    "elysia": "^1.4.28"
+    "@elysiajs/cors": "^1.4.1",
+    "@elysiajs/eden": "^1.4.9",
+    "@prisma/adapter-pg": "^7.6.0",
+    "@prisma/client": "^7.6.0",
+    "better-auth": "^1.6.0",
+    "elysia": "^1.4.28",
+    "ioredis": "^5.10.1",
+    "pg": "^8.20.0",
+    "prismabox": "^1.1.26"
   },
   "devDependencies": {
-    "bun-types": "latest"
+    "bun-types": "latest",
+    "prisma": "^7.6.0"
   },
   "module": "src/index.js"
 }

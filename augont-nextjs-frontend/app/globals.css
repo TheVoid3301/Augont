@@ -1,8 +1,16 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* 浅紫色主题背景：极淡的薰衣草紫 */
+  --background: #f8f7ff; 
+  --foreground: #2d2a3e;
+  
+  /* 定义紫色系变量供主题使用 */
+  --color-violet-50: #f5f3ff;
+  --color-violet-100: #ede9fe;
+  --color-violet-200: #ddd6fe;
+  --color-violet-600: #7c3aed;
+  --color-violet-700: #6d28d9;
 }
 
 @theme inline {
@@ -10,17 +18,21 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  
+  /* 注册自定义颜色 */
+  --color-brand-purple: var(--color-violet-600);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #13111c; /* 深紫色暗调背景 */
+    --foreground: #eceaff;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: JetBrainMono;
+  transition: background-color 0.3s ease;
 }

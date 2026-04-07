@@ -1,10 +1,9 @@
-import { Elysia } from 'elysia'
-import { TotalRouter } from './interface/router'
+import { createApp } from './app';
 
-const app = new Elysia()
-                .use(TotalRouter)
-                .listen(3000);
+const app = createApp().listen(3000);
 
 console.log(
   `Augont is running at ${app.server?.hostname}:${app.server?.port}`
 );
+
+export type App = typeof app;

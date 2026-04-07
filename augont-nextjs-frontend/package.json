@@ -9,9 +9,15 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@elysiajs/eden": "^1.4.9",
+    "@radix-ui/react-hover-card": "^1.1.15",
+    "axios": "^1.14.0",
+    "elysia": "^1.4.28",
+    "lucide-react": "^1.7.0",
     "next": "^16.2.2",
     "react": "^19.2.4",
-    "react-dom": "^19.2.4"
+    "react-dom": "^19.2.4",
+    "zustand": "^5.0.12"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.2.2",
