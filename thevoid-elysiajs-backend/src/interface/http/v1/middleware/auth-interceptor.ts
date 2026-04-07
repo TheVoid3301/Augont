@@ -1,10 +1,9 @@
 import { Elysia } from 'elysia';
 import { auth } from '../../../../infrastructure/libs/auth';
 import { fail } from '../../../../domain/shared/result';
+import { protectedPrefixes } from '../config/protected-prefixes';
 
 type SessionPayload = Awaited<ReturnType<typeof auth.api.getSession>>;
-
-const protectedPrefixes = ['/api/v1/file'];
 
 export const authInterceptor = new Elysia({ name: 'auth-interceptor' })
   .decorate('authSession', null as SessionPayload | null)

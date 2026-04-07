@@ -2,23 +2,7 @@ import type { Prisma } from '../db/prisma/generated';
 import { prisma } from '../db/prisma/client';
 import type { CreateFileMetadataInput, FileMetadata } from '../../../domain/model/file';
 import type { FileMetadataRepository } from '../../../domain/repository/file-metadata-repository';
-
-const mapToDomain = (record: Prisma.UserFileGetPayload<object>): FileMetadata => ({
-  id: record.id,
-  userId: record.userId,
-  fileMd5: record.fileMd5,
-  fileName: record.fileName,
-  originalName: record.originalName,
-  extension: record.extension,
-  mimeType: record.mimeType,
-  sizeBytes: record.sizeBytes,
-  storagePath: record.storagePath,
-  storageProvider: record.storageProvider,
-  isDeleted: record.isDeleted,
-  createdAt: record.createdAt,
-  updatedAt: record.updatedAt,
-  lastAccessedAt: record.lastAccessedAt
-});
+import { mapUserFileToDomain } from '../mapper/user-file-mapper';
 
 export class PrismaFileMetadataRepository implements FileMetadataRepository {
   async findByUserAndMd5(userId: string, fileMd5: string): Promise<FileMetadata | null> {
@@ -30,7 +14,7 @@ export class PrismaFileMetadataRepository implements FileMetadataRepository {
       }
     });
 
-    return record ? mapToDomain(record) : null;
+    return record ? mapUserFileToDomain(record) : null;
   }
 
   async findFirstByMd5(fileMd5: string): Promise<FileMetadata | null> {
@@ -41,7 +25,7 @@ export class PrismaFileMetadataRepository implements FileMetadataRepository {
       }
     });
 
-    return record ? mapToDomain(record) : null;
+    return record ? mapUserFileToDomain(record) : null;
   }
 
   async findByIdAndUser(id: string, userId: string): Promise<FileMetadata | null> {
@@ -53,7 +37,7 @@ export class PrismaFileMetadataRepository implements FileMetadataRepository {
       }
     });
 
-    return record ? mapToDomain(record) : null;
+    return record ? mapUserFileToDomain(record) : null;
   }
 
   async create(input: CreateFileMetadataInput): Promise<FileMetadata> {
@@ -68,11 +52,11 @@ export class PrismaFileMetadataRepository implements FileMetadataRepository {
         sizeBytes: input.sizeBytes,
         storagePath: input.storagePath,
         storageProvider: input.storageProvider,
-        metadata: input.metadata
+        metadata: input.metadata as Prisma.InputJsonValue
       }
     });
 
-    return mapToDomain(record);
+    return mapUserFileToDomain(record);
   }
 
   async touchLastAccessedAt(id: string): Promise<void> {

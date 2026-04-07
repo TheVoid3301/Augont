@@ -4,25 +4,11 @@ import { fail, success } from '../../../../domain/shared/result';
 import { auth } from '../../../../infrastructure/libs/auth';
 import { LocalFileStorage } from '../../../../infrastructure/libs/storage/local-file-storage';
 import { PrismaFileMetadataRepository } from '../../../../infrastructure/persistance/repository/prisma-file-metadata-repository';
+import { toFileResponse } from '../dto/file-response';
 
 const fileRepository = new PrismaFileMetadataRepository();
 const localFileStorage = new LocalFileStorage();
 const fileService = new FileService(fileRepository, localFileStorage);
-
-const toResponseData = (record: Awaited<ReturnType<FileService['upload']>>['file']) => ({
-  id: record.id,
-  userId: record.userId,
-  fileMd5: record.fileMd5,
-  fileName: record.fileName,
-  originalName: record.originalName,
-  extension: record.extension,
-  mimeType: record.mimeType,
-  sizeBytes: record.sizeBytes.toString(),
-  storagePath: record.storagePath,
-  storageProvider: record.storageProvider,
-  createdAt: record.createdAt,
-  updatedAt: record.updatedAt
-});
 
 const getUserIdFromSession = async (request: Request): Promise<string | null> => {
   const session = await auth.api.getSession({
@@ -68,7 +54,7 @@ export const fileRouter = new Elysia({ prefix: '/file' })
     }
 
     return success({
-      ...toResponseData(uploaded.file),
+      ...toFileResponse(uploaded.file),
       deduplicated: uploaded.deduplicated
     }, 'file uploaded');
   })

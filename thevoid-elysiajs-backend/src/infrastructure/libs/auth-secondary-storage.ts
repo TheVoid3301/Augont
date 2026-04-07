@@ -1,6 +1,6 @@
 import type { SecondaryStorage } from '@better-auth/core/db';
 import { env } from '../config/env';
-import { getRedisClient } from './redis/client';
+import { getRedisClient } from '../persistance/db/redis/client';
 
 export const createSecondaryStorage = (): SecondaryStorage | undefined => {
   const redis = getRedisClient();

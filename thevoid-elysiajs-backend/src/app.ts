@@ -3,7 +3,7 @@ import { prisma } from './infrastructure/persistance/db/prisma/client';
 import { cors } from '@elysiajs/cors'
 import { TotalRouter } from './interface/router';
 import { authInterceptor } from './interface/http/v1/middleware/auth-interceptor';
-import { closeRedis } from './infrastructure/libs/redis/client';
+import { closeRedis } from './infrastructure/persistance/db/redis/client';
 
 export const createApp = () =>
   new Elysia()
