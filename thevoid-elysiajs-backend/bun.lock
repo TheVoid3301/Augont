@@ -3,7 +3,7 @@
   "configVersion": 1,
   "workspaces": {
     "": {
-      "name": "Augont",
+      "name": "thevoid-elysiajs-backend",
       "dependencies": {
         "@elysiajs/cors": "^1.4.1",
         "@elysiajs/eden": "^1.4.9",
@@ -379,3 +379,4 @@
     "proper-lockfile/signal-exit": ["signal-exit@3.0.7", "", {}, "sha512-wnD2ZE+l+SPC/uoS0vXeE9L1+0wuaMqKlfz9AMUo38JsyLSBWSFcHR1Rri62LZc12vLr1gb3jl7iwQhgwpAbGQ=="],
   }
 }
+

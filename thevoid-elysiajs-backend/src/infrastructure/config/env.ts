@@ -45,5 +45,6 @@ export const env = {
   UPLOAD_ROOT: withDefault('UPLOAD_ROOT', './storage/uploads'),
   UPLOAD_MAX_SIZE_MB: numberWithDefault('UPLOAD_MAX_SIZE_MB', 20),
   REDIS_URL: optional('REDIS_URL'),
-  REDIS_KEY_PREFIX: withDefault('REDIS_KEY_PREFIX', 'augont')
+  REDIS_KEY_PREFIX: withDefault('REDIS_KEY_PREFIX', 'thevoid')
 } as const;
+
