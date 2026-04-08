@@ -14,10 +14,10 @@ const withDefault = (name: string, fallback: string): string => {
   return value;
 };
 
-const optional = (name: string): string | undefined => {
+const optional = (name: string): string => {
   const value = process.env[name];
   if (!value) {
-    return undefined;
+    return '';
   }
   return value;
 };
@@ -45,6 +45,10 @@ export const env = {
   UPLOAD_ROOT: withDefault('UPLOAD_ROOT', './storage/uploads'),
   UPLOAD_MAX_SIZE_MB: numberWithDefault('UPLOAD_MAX_SIZE_MB', 20),
   REDIS_URL: optional('REDIS_URL'),
-  REDIS_KEY_PREFIX: withDefault('REDIS_KEY_PREFIX', 'thevoid')
+  REDIS_KEY_PREFIX: withDefault('REDIS_KEY_PREFIX', 'thevoid'),
+  REDIS_MIN_CONNECTION: numberWithDefault('REDIS_MIN_CONNECTION', 2),
+  REDIS_MAX_CONNECTION: numberWithDefault('REDIS_MAX_CONNECTION', 10),
+  REDIS_IDLE_TIMEOUT_MILLIS: numberWithDefault('REDIS_IDLE_TIMEOUT_MILLIS', 30000),
+  REDIS_ACQUIRE_TIMEOUT_MILLIS: numberWithDefault('REDIS_ACQUIRE_TIMEOUT_MILLIS', 5000)
 } as const;
 
